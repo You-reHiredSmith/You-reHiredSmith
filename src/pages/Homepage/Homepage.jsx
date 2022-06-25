@@ -1,5 +1,6 @@
 import React from "react";
 import Table from '../../components/Table.jsx'
+import Navbar from '../../components/Navbar.jsx'
 
 export default function Homepage() {
   // const rowArray = row.map(el => {
@@ -8,6 +9,9 @@ export default function Homepage() {
   //   }) 
 
   return (
-    <div> < Table /> </div>
+    <div>
+      <Navbar />
+      <Table />
+    </div>
   )
 }

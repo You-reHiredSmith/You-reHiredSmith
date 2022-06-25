@@ -19,13 +19,12 @@ const initialState = {
 
 export default function appReducers(state = initialState, action) { 
   switch (action.type) {
-    case action.type.ADD_JOB_ID: 
-    default: return initialState 
+    case actionTypes.ADD_JOB_ID: 
       return {
         ...initialState, 
         jobId: action.payload
     }
-  }
 
-    
+    default: return state
+  }  
 }

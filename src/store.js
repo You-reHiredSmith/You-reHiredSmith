@@ -1,7 +1,9 @@
-import { legacy_createStore } from 'redux'
+import { configureStore } from '@reduxjs/toolkit'
+import appReducers from './reducers/appReducers'
 
-
-const store = legacy_configureStore(appReducers);
+const store = configureStore({
+  reducers: appReducers
+})
 
 
 

@@ -8,8 +8,13 @@ const router = express.Router()
 //   res.send('no bugs')
 // })
 
-router.get('/api/applications/:id', apiController.getApplicationId, (req, res) => {
-    res.status(200).json(res.locals.applicationId); 
+router.get('/users/:id', apiController.getUserId, (req, res) => {
+    res.status(200).json(res.locals.rows); 
+
+})
+
+router.get('/users/applications/:id', apiController.getUsersApplications, (req, res) => {
+  res.json(res.locals.applications)
 })
 
 module.exports = router; 

@@ -4,7 +4,7 @@ const db = require('../models/models.js');
 
 module.exports = {
   // All general api controllers will go here
-  testController: async (req, res, next) => {
+  /* testController: async (req, res, next) => {
     try {
       console.log('test')
       const data = await db.query('SELECT * FROM users')
@@ -12,6 +12,17 @@ module.exports = {
       next()
     } catch(err) {
       console.log(err)
+      next(err)
+    }
+  }, */
+
+  getUsersApplications: async (req, res, next) => {
+    const { id : userId } = req.params
+    try {
+      const data = await db.query('SELECT * FROM applications WHERE user_id = $1',[userId])
+      res.locals.applications = data.rows
+      next()
+    } catch(err) {
       next(err)
     }
   }

@@ -1,5 +1,5 @@
 //action types
-import * as actiontype from './actiontype.js'
+import * as appTypes from '../reducers/appReducers.js'
 
 //export actions
 export const addJobIdCreator = jobId => ({

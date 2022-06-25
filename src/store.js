@@ -1,8 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
-import appReducers from './reducers/appReducers'
+
+import appReducer from './reducers/appReducers'
 
 const store = configureStore({
-  reducers: appReducers
+  reducer: {
+    app: appReducer
+  }
 })
 
 

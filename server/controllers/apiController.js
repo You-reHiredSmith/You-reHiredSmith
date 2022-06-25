@@ -17,6 +17,6 @@ module.exports = {
   }
 
   getApplicationId: async (req, res, next) => {
-    
+
   }
 } 

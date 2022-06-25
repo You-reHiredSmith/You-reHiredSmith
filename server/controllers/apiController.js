@@ -28,5 +28,16 @@ module.exports = {
       console.log(err)
       next(err)
     }
+  },
+
+  getUsersApplications: async (req, res, next) => {
+    const { id : userId } = req.params
+    try {
+      const data = await db.query('SELECT * FROM applications WHERE user_id = $1',[userId])
+      res.locals.applications = data.rows
+      next()
+    } catch(err) {
+      next(err)
+    }
   }
 }; 

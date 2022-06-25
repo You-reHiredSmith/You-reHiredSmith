@@ -8,4 +8,8 @@ const router = express.Router()
 //   res.send('no bugs')
 // })
 
+router.get('/users/:id', apiController.getUserId, (req, res) => {
+    res.status(200).json(res.locals.rows); 
+})
+
 module.exports = router; 

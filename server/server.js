@@ -1,6 +1,8 @@
 const express = require('express'); 
 const path = require('path'); 
 
+const apiRoutes = require('./routes/apiRoutes.js')
+
 const app = express(); 
 const PORT = 3000; 
 app.use(express.json()); //built in middleware parsing incoming JSON requests and puts parsed data in req.body
@@ -13,6 +15,8 @@ app.get("/", (req, res) => {
     return res.status(200).sendFile(path.join(__dirname, '../dist/index.html'))
 });
 
+//All api requests will go through here
+app.use('/api', apiRoutes)
 
 //local error handler
 app.use((req, res) => res.sendStatus(404)); 

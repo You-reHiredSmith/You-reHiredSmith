@@ -1,7 +1,7 @@
 import * as actionTypes from './actiontype.js'
 
 const initialState = {
-  jobId: 4, 
+  jobId: 4,
   jobName: 'blah'
 };
 
@@ -17,14 +17,16 @@ const initialState = {
 // }
 
 
-export default function appReducers(state = initialState, action) { 
+export default function appReducers(state = initialState, action) {
   switch (action.type) {
-    case actionTypes.ADD_JOB_ID: 
+    case 'ADD_JOB_ID':
+    case actionTypes.ADD_JOB_ID:
       return {
-        ...initialState, 
+        ...initialState,
         jobId: action.payload
-    }
-
+      }
     default: return state
-  }  
+  }
+
+
 }

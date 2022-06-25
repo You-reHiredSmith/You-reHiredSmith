@@ -15,4 +15,8 @@ module.exports = {
       next(err)
     }
   }
+
+  getApplicationId: async (req, res, next) => {
+    
+  }
 } 

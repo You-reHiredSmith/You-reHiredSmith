@@ -1,10 +1,4 @@
-import * as actionTypes from './actiontype.js'
-
-const initialState = {
-  jobId: 4,
-  jobName: 'blah'
-};
-
+import { createSlice } from '@reduxjs/toolkit'
 
 // function createReducer(initialState, handlers) {
 //   return function reducer(state = initialState, action) {
@@ -16,17 +10,24 @@ const initialState = {
 //   }
 // }
 
-
-export default function appReducers(state = initialState, action) {
-  switch (action.type) {
-    case 'ADD_JOB_ID':
-    case actionTypes.ADD_JOB_ID:
-      return {
-        ...initialState,
-        jobId: action.payload
-      }
-    default: return state
+export const appSlice = createSlice({
+  name: 'app',
+  initialState: {
+    jobId: 4,
+    jobName: 'blah',
+    name: 'Griffin'
+  },
+  reducers: {
+    ADD_JOB_ID: (state, action) => {
+        state.jobId = action.payload
+    },
+  },
+  extraReducers: (builder) => {
+  builder
+    .addDefaultCase((state, action) => {return state})
   }
+})
 
+export const { ADD_JOB_ID } = appSlice.actions
 
-}
+export default appSlice.reducer

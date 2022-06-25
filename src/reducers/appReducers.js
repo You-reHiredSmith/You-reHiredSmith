@@ -25,7 +25,7 @@ export default function appReducers(state = initialState, action) {
         ...initialState,
         jobId: action.payload
       }
-    default: return initialState
+    default: return state
   }
 
 

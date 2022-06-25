@@ -14,11 +14,11 @@ const el = document.getElementById("root");
 const root = createRoot(el);
 
 root.render(
-  <BrowserRouter>
-    <Routes>
-      <Provider store={store}>
+  <Provider store={store}>
+    <BrowserRouter>
+      <Routes>
         <Route path="/" element={<App />} />
-      </Provider>
-    </Routes>
-  </BrowserRouter>
+      </Routes>
+    </BrowserRouter>
+  </Provider>
 )

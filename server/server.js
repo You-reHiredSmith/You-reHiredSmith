@@ -3,12 +3,10 @@ const path = require('path')
 
 const apiRoutes = require('./routes/apiRoutes.js')
 
-
-const app = express();
-const PORT = 3000;
-app.use(express.json()); //built in middleware parsing incoming JSON requests and puts parsed data in req.body
+const app = express()
+const PORT = 3000
+app.use(express.json()) // built in middleware parsing incoming JSON requests and puts parsed data in req.body
 app.use(express.urlencoded({ extended: true }))
-
 
 // running a get request sending dist/index to server.
 app.use(express.static(path.join(__dirname, '../dist')))

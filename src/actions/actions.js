@@ -1,11 +1,11 @@
-//action types
+// action types
 import * as appTypes from '../reducers/appReducers.js'
 
-//export actions
+// export actions
 export const addJobIdCreator = jobId => ({
-   type: types.ADD_JOB_Id,
-   payload: jobId,
- });
+  type: types.ADD_JOB_Id,
+  payload: jobId
+})
 // export const addMarketActionCreator = marketId => ({
 //   type: types.ADD_MARKET,
 //   payload: marketId,

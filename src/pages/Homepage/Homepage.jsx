@@ -9,7 +9,7 @@ export default function Homepage () {
   //   })
 
   return (
-    <div>
+    <div id='home'>
       <Navbar />
       <Table />
     </div>

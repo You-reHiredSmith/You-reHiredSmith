@@ -9,7 +9,6 @@ const router = express.Router()
 // })
 
 router.get('/users/:id', apiController.getUserId, (req, res) => {
-
   res.status(200).json(res.locals.rows)
 })
 
@@ -25,6 +24,4 @@ router.get('/applications/:id', apiController.getApplicationsId, (req, res) => {
   res.json(res.locals.applicationsId)
 })
 
-
-
-module.exports = router;
+module.exports = router

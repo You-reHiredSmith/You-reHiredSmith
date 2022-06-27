@@ -4,7 +4,7 @@ import { Provider } from 'react-redux'
 import Homepage from "./pages/Homepage/Homepage.jsx";
 import Documents from "./pages/Documents/Documents.jsx";
 import store from './store'
-
+import Homepage from './pages/Homepage/Homepage.jsx'
 
 export default function App () {
   return (

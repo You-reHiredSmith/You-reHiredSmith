@@ -9,22 +9,34 @@ import { createSlice } from '@reduxjs/toolkit'
 //     }
 //   }
 // }
+async function getApplications () {
+  const json = await fetch('/api/users/applications/1')
+  const data = await json.json()
+  return data
+}
+
+async function getUser () {
+  const json = await fetch('/api/users/1')
+  const data = await json.json()
+  return data
+}
+
+const initialState = {
+  user: await getUser(),
+  applications: await getApplications()
+}
 
 export const appSlice = createSlice({
   name: 'app',
-  initialState: {
-    jobId: 4,
-    jobName: 'blah',
-    name: 'Griffin'
-  },
+  initialState,
   reducers: {
     ADD_JOB_ID: (state, action) => {
-        state.jobId = action.payload
-    },
+      state.jobId = action.payload
+    }
   },
   extraReducers: (builder) => {
-  builder
-    .addDefaultCase((state, action) => {return state})
+    builder
+      .addDefaultCase((state, action) => state)
   }
 })
 

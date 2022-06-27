@@ -17,4 +17,8 @@ router.get('/users/applications/:id', apiController.getUsersApplications, (req, 
   res.json(res.locals.applications)
 })
 
-module.exports = router; 
+router.get('/applications/:id', apiController.getApplicationsId, (req, res) => {
+  res.json(res.locals.applicationsId); 
+})
+
+module.exports = router;  

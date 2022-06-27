@@ -1,12 +1,9 @@
-import React from 'react';
+import React from 'react'
 import Row from '../Row/Row.jsx'
 import './Table.css'
+import AddApplication from '../AddApplication/AddApplication.jsx'
 
-
-
-
-export default function Table() {
-
+export default function Table () {
   return (
     <div>
       <table>
@@ -24,7 +21,7 @@ export default function Table() {
           < Row />
         </tbody>
       </table>
+      < AddApplication />
     </div>
- 
   )
 }

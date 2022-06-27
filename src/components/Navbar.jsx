@@ -12,7 +12,7 @@ export default function Navbar () {
       <button className="apphistory" href="#">
         Application History
       </button>
-      <button className="docs" href="#">
+      <button className="docs" href="./pages/Documents/Documents.jsx">
         Docs
       </button>
     </nav>

@@ -23,6 +23,13 @@ export const appSlice = createSlice({
   reducers: {
     ADD_APPLICATION: (state, action) => {
       state.applications.push(action.payload)
+    },
+    DELETE_APPLICATION: (state, action) => {
+      for (let i = 0; i < state.applications.length; i++) {
+        if (state.applications[i].application_id === action.payload) {
+          state.applications.splice(i, 1)
+        }
+      }
     }
   },
   extraReducers: (builder) => {
@@ -31,6 +38,6 @@ export const appSlice = createSlice({
   }
 })
 
-export const { ADD_APPLICATION } = appSlice.actions
+export const { ADD_APPLICATION, DELETE_APPLICATION } = appSlice.actions
 
 export default appSlice.reducer

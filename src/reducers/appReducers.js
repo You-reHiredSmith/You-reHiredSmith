@@ -1,14 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-// function createReducer(initialState, handlers) {
-//   return function reducer(state = initialState, action) {
-//     if (handlers.hasOwnProperty(action.type)) {
-//       return handlers[action.type](state, action)
-//     } else {
-//       return state;
-//     }
-//   }
-// }
 async function getApplications () {
   const json = await fetch('/api/users/applications/1')
   const data = await json.json()
@@ -30,8 +21,8 @@ export const appSlice = createSlice({
   name: 'app',
   initialState,
   reducers: {
-    ADD_JOB_ID: (state, action) => {
-      state.jobId = action.payload
+    ADD_APPLICATION: (state, action) => {
+      state.applications.push(action.payload)
     }
   },
   extraReducers: (builder) => {
@@ -40,6 +31,6 @@ export const appSlice = createSlice({
   }
 })
 
-export const { ADD_JOB_ID } = appSlice.actions
+export const { ADD_APPLICATION } = appSlice.actions
 
 export default appSlice.reducer

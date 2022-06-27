@@ -39,5 +39,22 @@ module.exports = {
     } catch(err) {
       next(err)
     }
+  },
+
+  addApplication: async (req, res, next) => {
+    const { user_id, companyname, status, priority, createddate,
+    notes, posting } = req.body
+    if (!user_id || !companyname || !status || !priority || !createddate ||
+      typeof notes !== 'string' || typeof posting !== 'string') next({message: 'Invalid Body in addApplication'})
+      try {
+        await db.query(`
+        INSERT INTO applications (user_id, companyname, status, priority, createddate, notes, posting)
+        VALUES ($1, $2, $3, $4, $5, $6, $7)
+        `, [user_id, companyname, status, priority, createddate, notes, posting])
+        next()
+      } catch (err) {
+        console.log(err)
+        next(err)
+      }
   }
 }; 

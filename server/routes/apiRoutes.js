@@ -26,4 +26,4 @@ router.get('/applications/:id', apiController.getApplicationsId, (req, res) => {
 })
 
 
-module.exports = router
+module.exports = router;

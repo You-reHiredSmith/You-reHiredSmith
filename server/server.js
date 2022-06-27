@@ -17,6 +17,10 @@ app.get('/', (req, res) => {
   return res.status(200).sendFile(path.join(__dirname, '../dist/index.html'))
 })
 
+app.get('/documents', (req, res) => {
+  return res.status(200).sendFile(path.join(__dirname, '../dist/index.html'))
+})
+
 // All api requests will go through here
 app.use('/api', apiRoutes)
 

@@ -4,7 +4,7 @@ import { Provider } from 'react-redux'
 import Homepage from "./pages/Homepage/Homepage.jsx";
 import Documents from "./pages/Documents/Documents.jsx";
 import store from './store'
-import Homepage from './pages/Homepage/Homepage'
+
 
 export default function App () {
   return (
@@ -12,7 +12,7 @@ export default function App () {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Homepage />} />
-          <Route path="/" element={<Documents />} />
+          <Route path="/documents" element={<Documents />} />
         </Routes>
       </BrowserRouter>
     </Provider>

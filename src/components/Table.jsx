@@ -1,11 +1,6 @@
-import React from 'react';
+import React from 'react'
 
-
-
-
-
-export default function Table() {
-
+export default function Table () {
   return (
     <table>
       <th>Company Name ID</th>

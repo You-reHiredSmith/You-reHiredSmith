@@ -1,6 +1,4 @@
-const db = require('../models/models.js'); 
-
-
+const db = require('../models/models.js')
 
 module.exports = {
   // All general api controllers will go here
@@ -20,23 +18,23 @@ module.exports = {
     try {
       const { id } = req.params
       const text = 'SELECT * FROM users WHERE user_id = $1'
-      const values = [id] 
-      const data = await db.query(text, values) 
+      const values = [id]
+      const data = await db.query(text, values)
       res.locals.rows = data.rows[0]
       return next()
-    } catch(err){
+    } catch (err) {
       console.log(err)
       next(err)
     }
   },
 
   getUsersApplications: async (req, res, next) => {
-    const { id : userId } = req.params
+    const { id: userId } = req.params
     try {
-      const data = await db.query('SELECT * FROM applications WHERE user_id = $1',[userId])
+      const data = await db.query('SELECT * FROM applications WHERE user_id = $1', [userId])
       res.locals.applications = data.rows
       next()
-    } catch(err) {
+    } catch (err) {
       next(err)
     }
   },
@@ -61,11 +59,11 @@ module.exports = {
   getApplicationsId: async (req, res, next) => {
     const { id } = req.params
     try {
-      const data = await db.query('SELECT * FROM applications WHERE application_id = $1',[id])
+      const data = await db.query('SELECT * FROM applications WHERE application_id = $1', [id])
       res.locals.applicationsId = data.rows[0]
       next()
     } catch (err) {
       next(err)
     }
   }
-}; 
+}

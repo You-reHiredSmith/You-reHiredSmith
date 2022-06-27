@@ -1,6 +1,6 @@
 const express = require('express')
 
-const apiController = require('../controllers/apiController.js'); 
+const apiController = require('../controllers/apiController.js')
 
 const router = express.Router()
 
@@ -9,8 +9,7 @@ const router = express.Router()
 // })
 
 router.get('/users/:id', apiController.getUserId, (req, res) => {
-    res.status(200).json(res.locals.rows); 
-
+  res.status(200).json(res.locals.rows)
 })
 
 router.get('/users/applications/:id', apiController.getUsersApplications, (req, res) => {
@@ -18,7 +17,7 @@ router.get('/users/applications/:id', apiController.getUsersApplications, (req, 
 })
 
 router.get('/applications/:id', apiController.getApplicationsId, (req, res) => {
-  res.json(res.locals.applicationsId); 
+  res.json(res.locals.applicationsId)
 })
 
-module.exports = router;  
+module.exports = router

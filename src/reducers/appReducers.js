@@ -19,12 +19,12 @@ export const appSlice = createSlice({
   },
   reducers: {
     ADD_JOB_ID: (state, action) => {
-        state.jobId = action.payload
-    },
+      state.jobId = action.payload
+    }
   },
   extraReducers: (builder) => {
-  builder
-    .addDefaultCase((state, action) => {return state})
+    builder
+      .addDefaultCase((state, action) => state)
   }
 })
 

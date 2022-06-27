@@ -67,5 +67,16 @@ module.exports = {
     } catch (err) {
       next(err)
     }
+  },
+
+  addNewUser: async (req, res, next) => {
+    const {  firstname, lastname, age } = req.body
+    try {
+      await db.query('INSERT INTO users (firstname, lastname, age) VALUES ($1, $2, $3)', [ firstname, lastname, age]) //'CREATE USER WITH VALUES
+      next()
+    } catch (err) {
+      console.log(err)
+      next(err)
+    }
   }
 }

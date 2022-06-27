@@ -1,11 +1,12 @@
-import React from "react"
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import store from './store'
+import React from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import Homepage from "./pages/Homepage/Homepage.jsx";
 import Documents from "./pages/Documents/Documents.jsx";
+import store from './store'
+import Homepage from './pages/Homepage/Homepage'
 
-export default function App() {
+export default function App () {
   return (
     <Provider store={store}>
       <BrowserRouter>
@@ -16,5 +17,4 @@ export default function App() {
       </BrowserRouter>
     </Provider>
   )
-};
-
+}

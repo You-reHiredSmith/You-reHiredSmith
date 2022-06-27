@@ -6,7 +6,7 @@ import AddApplication from '../AddApplication/AddApplication.jsx'
 export default function Table ({ applications }) {
   const output = applications.map((app, key) => {
     return (
-          <Row companyname={app.companyname} status={app.status} createddate={app.createddate} notes={app.notes} posting={app.posting} key={key}/>
+          <Row id={app.application_id} companyname={app.companyname} status={app.status} createddate={app.createddate} notes={app.notes} posting={app.posting} key={key}/>
     )
   })
   return (

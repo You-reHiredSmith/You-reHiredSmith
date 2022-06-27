@@ -8,7 +8,7 @@ import { useState } from 'react'
 export default function Notes() {
 
   const [text, setText] = useState('')
-  const dispatch = useDispatch
+  const dispatch = useDispatch()
 
   const handleChange = e => setText(e.target.value)
 

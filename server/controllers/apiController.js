@@ -41,16 +41,17 @@ module.exports = {
 
   addApplication: async (req, res, next) => {
     const {
-      user_id, companyname, status, priority, createddate,
+      userId, companyname, status, priority, createddate,
       notes, posting
     } = req.body
-    if (!user_id || !companyname || !status || !priority || !createddate ||
+    console.log(req.body)
+    if (!userId || !companyname || !status || typeof priority !== 'string' || !createddate ||
       typeof notes !== 'string' || typeof posting !== 'string') next({ message: 'Invalid Body in addApplication' })
     try {
       await db.query(`
         INSERT INTO applications (user_id, companyname, status, priority, createddate, notes, posting)
         VALUES ($1, $2, $3, $4, $5, $6, $7)
-        `, [user_id, companyname, status, priority, createddate, notes, posting])
+        `, [userId, companyname, status, priority, createddate, notes, posting])
       next()
     } catch (err) {
       console.log(err)
@@ -70,9 +71,9 @@ module.exports = {
   },
 
   addNewUser: async (req, res, next) => {
-    const {  firstname, lastname, age } = req.body
+    const { firstname, lastname, age } = req.body
     try {
-      await db.query('INSERT INTO users (firstname, lastname, age) VALUES ($1, $2, $3)', [ firstname, lastname, age]) //'CREATE USER WITH VALUES
+      await db.query('INSERT INTO users (firstname, lastname, age) VALUES ($1, $2, $3)', [firstname, lastname, age]) // 'CREATE USER WITH VALUES
       next()
     } catch (err) {
       console.log(err)

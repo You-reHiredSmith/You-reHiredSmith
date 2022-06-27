@@ -5,13 +5,13 @@ module.exports = {
   entry: './src/index.js',
   output: {
     path: path.join(__dirname, '/dist'),
-    filename: 'bundle.js',
+    filename: 'bundle.js'
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html',
       inject: false
-    }),
+    })
   ],
   devServer: {
     proxy: {
@@ -28,22 +28,25 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            "presets": ["@babel/preset-env", "@babel/preset-react"]
+            presets: ['@babel/preset-env', '@babel/preset-react']
           }
-        },
+        }
       },
       {
         test: /\.(sa|sc|c)ss$/, // styles files
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+        use: ['style-loader', 'css-loader', 'sass-loader']
       },
       {
         test: /\.(png|jpe?g|gif)$/i,
         use: [
           {
-            loader: 'file-loader',
-          },
-        ],
-      },
-    ],
+            loader: 'file-loader'
+          }
+        ]
+      }
+    ]
   },
+  experiments: {
+    topLevelAwait: true
+  }
 }

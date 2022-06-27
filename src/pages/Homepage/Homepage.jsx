@@ -1,6 +1,6 @@
 import React from 'react'
-import Table from '../../components/Table'
-import Navbar from '../../components/Navbar'
+import Table from '../../components/Table.jsx'
+import Navbar from '../../components/Navbar.jsx'
 
 export default function Homepage () {
   // const rowArray = row.map(el => {

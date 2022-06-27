@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import store from './store'
-import Homepage from './pages/Homepage/Homepage'
+import Homepage from './pages/Homepage/Homepage.jsx'
 
 export default function App () {
   return (

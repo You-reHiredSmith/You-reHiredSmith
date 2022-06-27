@@ -1,7 +1,9 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
+
 import Table from '../../components/Table/Table.jsx'
 import Navbar from '../../components/Navbar/Navbar.jsx'
-import { useSelector } from 'react-redux'
+import './Homepage.css'
 
 export default function Homepage () {
   // const rowArray = row.map(el => {
@@ -14,8 +16,12 @@ export default function Homepage () {
   console.log(applications)
   return (
     <div id='home'>
-      <Navbar />
-      <Table applications={ applications }/>
+      <div>
+        <Navbar />
+      </div>
+      <div id='content'>
+        <Table applications={ applications }/>
+      </div>
     </div>
   )
 }

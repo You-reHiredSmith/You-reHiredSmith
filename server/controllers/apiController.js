@@ -42,12 +42,10 @@ module.exports = {
   },
 
   getApplicationsId: async (req, res, next) => {
-    const { application_Id: applicationId } = req.params
+    const { id } = req.params
     try {
-      const data = await db.query('SELECT * FROM applications WHERE application_id = $1',[applicationId])
-      console.log(req.params)
-      res.locals.applicationsId = data.rows
-      console.log(data.rows)
+      const data = await db.query('SELECT * FROM applications WHERE application_id = $1',[id])
+      res.locals.applicationsId = data.rows[0]
       next()
     } catch (err) {
       next(err)

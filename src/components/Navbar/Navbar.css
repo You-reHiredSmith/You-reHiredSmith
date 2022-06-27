@@ -1,0 +1,68 @@
+/* green color:  */
+:root {
+  --font: 'San-Serif';
+  --blue: #0f3181;
+  --light-green: #4872a8;
+  --fontsize: 20px;
+  --font-color: rgb(89, 114, 107);
+}
+
+#div {
+  overflow: hidden;
+  top: 0;
+
+}
+
+#navbar {
+  display: flex;
+  justify-content: space-evenly;
+  background-color: var(--light-green);
+  padding: 3rem 0rem 2rem 1rem;
+  margin-bottom: 0px;
+}
+
+.homepage {
+  background-color: lightgray;
+  font-family: var(--font);
+  padding: 0.5rem 1rem;
+  font-size: var(--fontsize);
+  border: 0px;
+  border-radius: 3px;
+  padding: 1rem 1.5rem;
+  color: var(--font-color);
+}
+
+.joblist {
+  background-color: lightgray;
+  font-family: var(--font);
+  font-size: var(--fontsize);
+  border: 0px;
+  border-radius: 3px;
+  padding: 1rem 1.5rem;
+  color: var(--font-color);
+}
+
+.apphistory {
+  background-color: lightgray;
+  font-family: var(--font);
+  font-size: var(--fontsize);
+  border: 0px;
+  border-radius: 3px;
+  padding: 1rem 1.5rem;
+  color: var(--font-color);
+}
+
+.docs {
+  background-color: lightgray;
+  font-family: var(--font);
+  font-size: var(--fontsize);
+  border: 0px;
+  border-radius: 3px;
+  padding: 1rem 1.5rem;
+  color: var(--font-color);
+}
+
+#navbar a {
+  text-decoration: none;
+  color: inherit;
+}

@@ -6,6 +6,11 @@ export const addApplicationActionCreator = application => ({
   type: appTypes.ADD_APPLICATION,
   payload: application
 })
+
+export const deleteApplicationActionCreator = applicationId => ({
+  type: appTypes.DELETE_APPLICATION,
+  payload: applicationId
+})
 // export const addMarketActionCreator = marketId => ({
 //   type: types.ADD_MARKET,
 //   payload: marketId,

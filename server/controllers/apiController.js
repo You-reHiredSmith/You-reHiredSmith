@@ -76,6 +76,20 @@ module.exports = {
       await db.query('INSERT INTO users (firstname, lastname, age) VALUES ($1, $2, $3)', [firstname, lastname, age]) // 'CREATE USER WITH VALUES
       next()
     } catch (err) {
+      next(err)
+    }
+  },
+
+  updateApplication: async (req, res, next) => {
+    const { application_id, user_id, companyname, status, priority, createddate, notes, posting } = req.body
+    console.log(req.body)
+    if (!user_id || !companyname || !status || !priority || !createddate || typeof notes !== 'string' || typeof posting !== 'string') next({ message: 'Invalid Body in updateApplication' })
+    try {
+      await db.query(`UPDATE applications 
+      SET user_id = $1, companyname = $2, status= $3, priority = $4, createddate = $5, notes = $6, posting = $7
+      WHERE application_id = $8`,  [user_id, companyname, status, priority, createddate, notes, posting, application_id])
+      next()
+    }catch(err){
       console.log(err)
       next(err)
     }

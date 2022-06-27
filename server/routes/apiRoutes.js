@@ -28,4 +28,8 @@ router.post('/users', apiController.addNewUser, (req, res) => {
   res.send('Post Successful!')
 })
 
+router.put('/users/applications/:id', apiController.updateApplication, (req, res) => {
+  res.send('Put Successful!')
+})
+
 module.exports = router

@@ -24,4 +24,8 @@ router.get('/applications/:id', apiController.getApplicationsId, (req, res) => {
   res.json(res.locals.applicationsId)
 })
 
+router.post('/users', apiController.addNewUser, (req, res) => {
+  res.send('Post Successful!')
+})
+
 module.exports = router

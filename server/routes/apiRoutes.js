@@ -10,7 +10,6 @@ const router = express.Router()
 
 router.get('/users/:id', apiController.getUserId, (req, res) => {
     res.status(200).json(res.locals.rows); 
-
 })
 
 router.get('/users/applications/:id', apiController.getUsersApplications, (req, res) => {
@@ -21,4 +20,8 @@ router.post('/applications', apiController.addApplication, (req, res) => {
   res.send('Post Successful!')
 })
 
-module.exports = router; 
+router.get('/applications/:id', apiController.getApplicationsId, (req, res) => {
+  res.json(res.locals.applicationsId); 
+})
+
+module.exports = router;  

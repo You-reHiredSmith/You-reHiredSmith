@@ -17,13 +17,12 @@ export default function Row ({
 
   async function deleteApplication () {
     try {
-      /*  await fetch('/api/applications', {
+       await fetch(`/api/applications${id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ application_id: id })
-      }) */
+        }
+      })
       dispatch(deleteApplicationActionCreator(id))
     } catch (err) {
       console.log(err)

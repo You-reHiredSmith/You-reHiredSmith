@@ -32,4 +32,8 @@ router.put('/users/applications/:id', apiController.updateApplication, (req, res
   res.send('Put Successful!')
 })
 
+router.delete('/applications/:id', apiController.deleteApplications, (req, res) => {
+  res.send('Delete Successful!')
+})
+
 module.exports = router

@@ -93,5 +93,17 @@ module.exports = {
       console.log(err)
       next(err)
     }
+  }, 
+
+  deleteApplications: async (req, res, next) => {
+    const { id } = req.params
+    try {
+      console.log(req.params)
+      await db.query(`DELETE FROM applications WHERE application_id = $1`,  [id])
+      next()
+    } catch(err){
+      console.log(err)
+      next(err)
+    }
   }
 }

@@ -3,16 +3,14 @@ import './Navbar.css'
 import { Link } from 'react-router-dom'
 import img from '../../img/Hiresmith2323.png'
 
-export default function Navbar() {
+export default function Navbar () {
   return (
     <div id="div">
       <nav id="navbar">
         <img id='img' src={img}></img>
-        <button className="homepage">
-          <Link to='/'>
+          <Link className="homepage" to='/'>
             <p>Home</p>
           </Link>
-        </button>
         <button className="joblist" >
           <a href="#">
             Job List

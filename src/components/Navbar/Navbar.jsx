@@ -1,13 +1,13 @@
 import React from 'react'
 import './Navbar.css'
 import { Link } from 'react-router-dom'
-import img from '../../img/Hiresmith23.png'
+import img from '../../img/Hiresmith2323.png'
 
 export default function Navbar() {
   return (
     <div id="div">
       <nav id="navbar">
-        <img src={img}></img>
+        <img id='img' src={img}></img>
         <button className="homepage">
           <Link to='/'>
             <p>Home</p>

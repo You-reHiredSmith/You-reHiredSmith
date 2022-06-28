@@ -6,26 +6,18 @@ export default function Navbar () {
   return (
     <div id="div">
       <nav id="navbar">
-        <button className="homepage">
-          <Link to='/'>
+          <Link className='link' to='/'>
             <p>Home</p>
           </Link>
-        </button>
-        <button className="joblist" >
-          <a href="#">
+        <button className="link" >
             Job List
-          </a>
         </button>
-        <button className="apphistory">
-            < a href="#">
+        <button className="link">
               Application History
-            </a>
         </button>
-        <button className="docs">
-          <Link to='/documents'>
+          <Link className='link' to='/documents'>
               <p>Docs</p>
           </Link>
-        </button>
       </nav>
     </div>
   )

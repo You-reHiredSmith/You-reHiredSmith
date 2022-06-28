@@ -87,21 +87,21 @@ module.exports = {
     try {
       await db.query(`UPDATE applications 
       SET user_id = $1, companyname = $2, status= $3, priority = $4, createddate = $5, notes = $6, posting = $7
-      WHERE application_id = $8`,  [user_id, companyname, status, priority, createddate, notes, posting, application_id])
+      WHERE application_id = $8`, [user_id, companyname, status, priority, createddate, notes, posting, application_id])
       next()
-    }catch(err){
+    } catch (err) {
       console.log(err)
       next(err)
     }
-  }, 
+  },
 
   deleteApplications: async (req, res, next) => {
     const { id } = req.params
     try {
       console.log(req.params)
-      await db.query(`DELETE FROM applications WHERE application_id = $1`,  [id])
+      await db.query('DELETE FROM applications WHERE application_id = $1', [id])
       next()
-    } catch(err){
+    } catch (err) {
       console.log(err)
       next(err)
     }

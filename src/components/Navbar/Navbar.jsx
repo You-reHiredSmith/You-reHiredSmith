@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import img from '../../img/hiresmith.png'
 
 export default function Navbar () {
+  // using link from react router instead of a elements
   return (
     <div id="div">
       <nav id="navbar">

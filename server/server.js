@@ -15,6 +15,7 @@ app.get('/', (req, res) => {
   return res.status(200).sendFile(path.join(__dirname, '../dist/index.html'))
 })
 
+// NOTE: this is here for react router
 app.get('/documents', (req, res) => {
   return res.status(200).sendFile(path.join(__dirname, '../dist/index.html'))
 })

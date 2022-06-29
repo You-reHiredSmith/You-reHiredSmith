@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux'
 import Notes from '../Notes/Notes.jsx'
 import { deleteApplicationActionCreator } from '../../actions/actions.js'
 
+// destructuring all the props 
 export default function Row ({
   companyname,
   status,
@@ -23,6 +24,7 @@ export default function Row ({
           'Content-Type': 'application/json'
         }
       })
+      // updating the state after the succesful fetch
       dispatch(deleteApplicationActionCreator(id))
     } catch (err) {
       console.log(err)
@@ -40,6 +42,7 @@ export default function Row ({
               <td><button onClick={deleteApplication}>Delete</button></td>
             </tr>
             <tr>
+              {/* conditionally rendering the notes based on state from line 16 and 39..*/}
               {notesOpen ? <Notes notes={notes}/> : null}
             </tr>
             </>

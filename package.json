@@ -6,7 +6,8 @@
   "scripts": {
     "start": "nodemon server/server.js",
     "dev": "concurrently \"webpack-dev-server --hot --mode development\" \"nodemon ./server/server.js\"",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "test": "jest --verbose"
   },
   "keywords": [],
   "author": "",
@@ -14,6 +15,7 @@
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.2",
     "dotenv": "^16.0.1",
+    "jest": "^28.1.2",
     "pg": "^8.7.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

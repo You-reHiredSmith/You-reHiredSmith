@@ -21,6 +21,8 @@ module.exports = {
       const values = [id]
       const data = await db.query(text, values)
       res.locals.rows = data.rows[0]
+      console.log(res.locals.rows)
+
       return next()
     } catch (err) {
       console.log(err)

@@ -1,6 +1,9 @@
 // action types
 import * as appTypes from '../reducers/appReducers.js'
 
+// the point of this is to make sure that when you want to use one of these dispatch functions you don't screw it up with a typo.
+// because if you dont import them or make a typo you'll get an obvious error.
+
 // export actions
 export const addApplicationActionCreator = application => ({
   type: appTypes.ADD_APPLICATION,

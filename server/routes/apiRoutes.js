@@ -8,6 +8,7 @@ const router = express.Router()
 //   res.send('no bugs')
 // })
 
+// the :id is for a dynamic route segment, but it's not actually being used in the query because userId of 1 is hardcoded
 router.get('/users/:id', apiController.getUserId, (req, res) => {
   res.status(200).json(res.locals.rows)
 })

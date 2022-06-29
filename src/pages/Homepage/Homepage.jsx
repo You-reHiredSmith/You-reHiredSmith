@@ -6,11 +6,11 @@ import Navbar from '../../components/Navbar/Navbar.jsx'
 import './Homepage.css'
 
 export default function Homepage () {
-  // const rowArray = row.map(el => {
-  //   const rw = Object.values(el)
-  //     <td>{rw}</td>;
-  //   })
+
+  // this is basically mapStateToProps https://www.reactjstutorials.com/react-redux/14/redux-use-selector
+  // its identifying which state information the component wants and is then passing it down as props to the table component
   const applications = useSelector((state) => {
+    // refer here when investigating the appReducer function
     return state.app.applications
   })
   console.log(applications)

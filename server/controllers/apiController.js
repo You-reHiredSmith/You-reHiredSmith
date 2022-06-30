@@ -14,6 +14,23 @@ module.exports = {
   //   }
   // }
 
+  // users table:
+  // user_id, firstname, lastname, age, spider_passwords
+
+  // need to getUser function from login, bcrypt compare
+  getUser: async (req, res, next) => {
+    try {
+      const { username, password } = req.body
+      const query = `SELECT user_id FROM users WHERE username = '${username} AND password = '${password}`
+      const data = await db.query(query)
+      res.locals.getUser = data.rows[0]
+      return next()
+    } catch (err) {
+      console.log(err)
+      next(err)
+    }
+  },
+
   getUserId: async (req, res, next) => {
     try {
       const { id } = req.params
@@ -72,16 +89,29 @@ module.exports = {
     }
   },
 
+  // add encrypted password
   addNewUser: async (req, res, next) => {
-    const { firstname, lastname, age } = req.body
+    const { username, password } = req.body
     try {
-      await db.query('INSERT INTO users (firstname, lastname, age) VALUES ($1, $2, $3)', [firstname, lastname, age]) // 'CREATE USER WITH VALUES
+      await db.query('INSERT INTO users (username, password) VALUES ($1, $2)', [username, password]) // 'CREATE USER WITH VALUES
       next()
     } catch (err) {
       next(err)
     }
   },
 
+  // addNewUser: async (req, res, next) => {
+  //   const { firstname, lastname, age } = req.body
+  //   try {
+  //     await db.query('INSERT INTO users (firstname, lastname, age) VALUES ($1, $2, $3)', [firstname, lastname, age]) // 'CREATE USER WITH VALUES
+  //     next()
+  //   } catch (err) {
+  //     next(err)
+  //   }
+  // },
+
+
+  
   updateApplication: async (req, res, next) => {
     const { application_id, user_id, companyname, status, priority, createddate, notes, posting } = req.body
     console.log(req.body)

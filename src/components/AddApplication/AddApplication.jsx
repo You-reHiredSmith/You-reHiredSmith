@@ -64,7 +64,7 @@ export default function AddApplication ({
   return (
     <tr>
       {/* {inputs} */}
-      <td key={Math.random()}><input type="text" id='createdate' className="form" /></td>
+      <td key={Math.random()}><input type="text" id='createddate' className="form" /></td>
       <td key={Math.random()}><input type="text" id='companyname' className="form" /></td>
       <td key={Math.random()}>
         <select id='status' className="form">

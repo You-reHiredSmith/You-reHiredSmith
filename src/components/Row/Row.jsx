@@ -41,17 +41,16 @@ export default function Row ({
 
   return (
             <>
-             <tr id = {setColor(status)}>
-              <td onClick={() => setNotesOpen(!notesOpen)}>{createddate}</td>
+            <tr id={setColor(status)}>
+              <td>{createddate}</td>
               <td>{companyname}</td>
-              <td>{status}</td>
+              <td onClick={() => setNotesOpen(!notesOpen)}>{status}</td>
               <td>{notes}</td>
               <td>{posting}</td>
               <td><button onClick={deleteApplication}>Delete</button></td>
             </tr>
             <tr>
-              {/* conditionally rendering the notes based on state from line 16 and 39..*/}
-              {notesOpen ? <Notes notes={notes}/> : null}
+            {notesOpen ? <Notes notes={notes}/> : null}
             </tr>
             </>
   )

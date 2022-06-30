@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
 // getting the applications from the database
+// replaced by fetchApplication
 async function getApplications () {
   const json = await fetch('/api/users/applications/4')
   const data = await json.json()
@@ -13,7 +14,7 @@ async function getApplications () {
 // if you follow this all the way to the apiController getUserId they've hard coded the user id of 1 right now
 
 
-/* // this function not needed anymore
+/* // getting user id
 async function getUser () {
   const json = await fetch('/api/users/4')
   const data = await json.json()

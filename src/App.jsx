@@ -5,6 +5,7 @@ import Homepage from './pages/Homepage/Homepage.jsx'
 import Documents from './pages/Documents/Documents.jsx'
 import store from './store'
 import Navbar from './components/Navbar/Navbar.jsx'
+import Login from './pages/Login/Login.jsx';
 
 export default function App () {
   return (
@@ -15,7 +16,8 @@ export default function App () {
         <Routes>
           {/* NOTE: could also nest all of the routes within the navbar route to display the navbar no matter what page the client is on LOOKUP react router dom nested routes...you'll need an outlet */}
           {/* slash route will display the hompage component */}
-          <Route path='/' element={<Homepage />} />
+          <Route path='/' element={<Login />} />
+          <Route path='/secret' element={<Homepage />} />
           {/* /documents will display the documents component */}
           <Route path='/documents' element={<Documents />} />
         </Routes>

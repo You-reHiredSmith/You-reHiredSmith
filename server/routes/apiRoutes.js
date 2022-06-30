@@ -14,6 +14,7 @@ router.get('/', apiController.getUser, (req, res) => {
 })
 
 router.get('/users/:id', apiController.getUserId, (req, res) => {
+  //console.log(req.params)
   res.status(200).json(res.locals.rows)
 })
 

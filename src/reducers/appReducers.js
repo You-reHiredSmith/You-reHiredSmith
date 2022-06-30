@@ -10,7 +10,7 @@ async function getApplications () {
 // looks like they were setting the stage to have multiple users..
 // if you follow this all the way to the apiController getUserId they've hard coded the user id of 1 right now
 async function getUser () {
-  const json = await fetch('/api/users/1')
+  const json = await fetch('/api/users/4')
   const data = await json.json()
   return data
 }
@@ -23,6 +23,8 @@ async function getUser () {
 const initialState = {
   user: await getUser(),
   applications: await getApplications()
+  // user: 1,
+  // applications: []
 }
 
 // A function that accepts an initial state, an object of reducer functions, and a "slice name", (in this case the name is app.

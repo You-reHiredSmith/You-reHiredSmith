@@ -2,7 +2,8 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 
 import './AddApplication.css'
-import { addApplicationActionCreator } from '../../actions/actions'
+import { appendApplication, postApplication } from '../../reducers/appReducers'
+//import { addApplicationActionCreator } from '../../actions/actions'
 
 export default function AddApplication ({
   columns
@@ -11,7 +12,8 @@ export default function AddApplication ({
   // useDispatch will allow the dispatching of actions withough connecting the component with connect method. https://www.reactjstutorials.com/react-redux/18/redux-use-dispatch
   const dispatch = useDispatch()
 
-  async function addApplication () {
+  //async 
+  function addApplication () {
     const form = document.querySelectorAll('.form')
     const body = {}
     form.forEach((el) => {
@@ -35,7 +37,7 @@ export default function AddApplication ({
     // priority: ""
     // status: "g"
     // user_id: 1
-
+/*
     try {
       await fetch('/api/applications', {
         method: 'POST',
@@ -45,11 +47,15 @@ export default function AddApplication ({
         body: (JSON.stringify(body))
       })
       // after the fetch has succeded, this dispatch will send the user input off to be updated into the state
-      dispatch(addApplicationActionCreator(body))
+      dispatch(appendApplication(body))
     } catch (err) {
       console.log(err)
     }
-  }
+*/
+    dispatch(postApplication(body)); // database post call
+    dispatch(appendApplication(body)); // just appending item to screen
+  } //end of addApplication function 
+
   // creating all the input fields using the array of strings that were passed as props so each input has an appropriate id for the above fetch request body
   const inputs = columns.map((column, i) => <td key={`input${i}`}><input type="text" id={column} className="form" /></td>)
 

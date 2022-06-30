@@ -23,7 +23,7 @@ export default function AddApplication ({
     body.notes = ''
     body.priority = ''
     // they've hard coded the user id to just be one.
-    body.userId = 1
+    body.userId = 4
     console.log(body)
     // this is what the body that will be sent in the fetch now looks like:  
 

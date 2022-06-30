@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-
+import './Row.css'
 import Notes from '../Notes/Notes.jsx'
 import { deleteApplicationActionCreator } from '../../actions/actions.js'
 
@@ -31,12 +31,20 @@ export default function Row ({
     }
   }
 
+
+  const setColor = (input) => {
+    const compStatus = input.toLowerCase();
+    if (compStatus === "submitted") return 'submitted';
+    if (compStatus === "in progress") return 'inProgress';
+    if (compStatus === "incomplete") return 'incomplete';
+  }
+
   return (
             <>
-             <tr>
-              <td>{createddate}</td>
+             <tr id = {setColor(status)}>
+              <td onClick={() => setNotesOpen(!notesOpen)}>{createddate}</td>
               <td>{companyname}</td>
-              <td onClick={() => setNotesOpen(!notesOpen)}>{status}</td>
+              <td>{status}</td>
               <td>{notes}</td>
               <td>{posting}</td>
               <td><button onClick={deleteApplication}>Delete</button></td>

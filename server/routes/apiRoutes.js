@@ -9,6 +9,10 @@ const router = express.Router()
 // })
 
 // the :id is for a dynamic route segment, but it's not actually being used in the query because userId of 1 is hardcoded
+router.get('/', apiController.getUser, (req, res) => {
+  res.sendStatus(200).json(res.locals.userLoggedIn)
+})
+
 router.get('/users/:id', apiController.getUserId, (req, res) => {
   res.status(200).json(res.locals.rows)
 })
@@ -25,8 +29,8 @@ router.get('/applications/:id', apiController.getApplicationsId, (req, res) => {
   res.json(res.locals.applicationsId)
 })
 
-router.post('/users', apiController.addNewUser, (req, res) => {
-  res.send('Post Successful!')
+router.post('/', apiController.addNewUser, (req, res) => {
+  res.sendStatus(200).json(res.locals.user)
 })
 
 router.put('/users/applications/:id', apiController.updateApplication, (req, res) => {

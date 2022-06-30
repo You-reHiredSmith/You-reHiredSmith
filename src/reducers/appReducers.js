@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 // getting the applications from the database
 async function getApplications () {
-  const json = await fetch('/api/users/applications/1')
+  const json = await fetch('/api/users/applications/4')
   const data = await json.json()
   return data
 }

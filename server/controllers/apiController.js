@@ -1,4 +1,6 @@
 const db = require('../models/models.js')
+const bcrypt = require('bcrypt')
+const { isRejected } = require('@reduxjs/toolkit')
 
 module.exports = {
   // All general api controllers will go here
@@ -16,15 +18,28 @@ module.exports = {
 
   // users table:
   // user_id, firstname, lastname, age, spider_passwords
-
+  // 'INSERT INTO users (username, spiders_passwords) VALUES ($1, $2)', [username, hashedPassword]
   // need to getUser function from login, bcrypt compare
   getUser: async (req, res, next) => {
     try {
       const { username, password } = req.body
-      const query = `SELECT user_id FROM users WHERE username = '${username} AND password = '${password}`
+      const query = `SELECT username, spiders_passwords FROM users WHERE username = '${username}'`
       const data = await db.query(query)
-      res.locals.getUser = data.rows[0]
-      return next()
+      //console.log(data)
+      // console.log(data.rows)
+      const data1 = data.rows[0]
+      // console.log(data1.spiders_passwords)
+      const user = data1.username
+      
+      // res.locals.userLoggedIn = user
+      // console.log(user)
+      const hashedPassword = data1.spiders_passwords
+      // console.log(hashedPassword)
+      const match = await bcrypt.compare(password, hashedPassword)
+      console.log(match)
+      if (match) {
+        return next()
+      }
     } catch (err) {
       console.log(err)
       next(err)
@@ -90,10 +105,25 @@ module.exports = {
   },
 
   // add encrypted password
+
   addNewUser: async (req, res, next) => {
+    const saltRounds = 12
     const { username, password } = req.body
+    // console.log(req.body)
+    // const hashedPassword = await new Promise((resolve, reject) =>
+    //   bcrypt.hash(password, saltRounds, function (err, hash) {
+    //     if (err) reject(err)
+    //     resolve(hash)
+    //   }))
+    // console.log(hashedPassword)
+    const hashedPassword = await bcrypt.hash(password, saltRounds)
+
     try {
-      await db.query('INSERT INTO users (username, password) VALUES ($1, $2)', [username, password]) // 'CREATE USER WITH VALUES
+      await db.query('INSERT INTO users (username, spiders_passwords) VALUES ($1, $2)', [username, hashedPassword])
+      // const data = await db.query('SELECT username FROM users WHERE username = $1', [username])
+      // console.log(data)
+      res.locals.user = username
+      // console.log(res.locals.user)
       next()
     } catch (err) {
       next(err)
@@ -110,8 +140,6 @@ module.exports = {
   //   }
   // },
 
-
-  
   updateApplication: async (req, res, next) => {
     const { application_id, user_id, companyname, status, priority, createddate, notes, posting } = req.body
     console.log(req.body)

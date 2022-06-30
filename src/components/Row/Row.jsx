@@ -19,7 +19,7 @@ export default function Row ({
 
   //async 
   function deleteApplication () {
-    /*
+    /* Moved this to appReducers
     try {
       await fetch(`/api/applications/${id}`, {
         method: 'DELETE',

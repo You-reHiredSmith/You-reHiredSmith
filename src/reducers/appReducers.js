@@ -1,12 +1,13 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
 // getting the applications from the database
-// replaced by fetchApplication
+/* // replaced by fetchApplication
 async function getApplications () {
   const json = await fetch('/api/users/applications/4')
   const data = await json.json()
   return data
 }
+/*
 
 // fetch request should be happening here! not int the AddApplication.jsx!
 
@@ -29,15 +30,28 @@ async function getUser () {
 // and if there's an issue with a request when submitting inputs that can be handled then by telling the user to re try
 const initialState = {
   //user: await getUser(),
-  user: 4,
+  user: 0,
   //applications: await getApplications()
   applications: []
 }
 
-// ===================  ASYNC REQUEST TO SERVER : GET ====================
-export const fetchApplication = createAsyncThunk('app/fetchApplication', async () => {
+// =========  ASYNC REQUEST TO SERVER : GET-USER(LOG-IN) =================
+export const fetchUserId = createAsyncThunk('app/fetchUserId', async (body) => {
+  console.log("fetchUserId invoking? ", body);
   try {
-    const json = await fetch('/api/users/applications/4')
+    const res = await fetch(`/api/users/${body.username}`)
+    const data = await res.json();
+    console.log("returned data from fetchUserId",data);
+    return data.user_id;
+  } catch (error) {
+    console.log(error)
+  }
+})
+
+// ===================  ASYNC REQUEST TO SERVER : GET ====================
+export const fetchApplication = createAsyncThunk('app/fetchApplication', async (userId) => {
+  try {
+    const json = await fetch(`/api/users/applications/${userId}`)
     const data = await json.json()
     return data;
   } catch (error) {
@@ -54,7 +68,6 @@ export const postApplication = createAsyncThunk('app/postApplication', async (bo
       body: (JSON.stringify(body))
     })
     //console.log("from postApplication fetch",body)
-    // nothing coming back though!!!!... better to have returning data
   } catch (err) {
     console.log(err)
   }
@@ -64,14 +77,14 @@ export const delApplication = createAsyncThunk('app/delApplication', async (id, 
   try {
     await fetch(`/api/applications/${id}`, {
       method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json'
-      }
+      headers: { 'Content-Type': 'application/json' }
     })
   } catch (err) {
     console.log(err)
   }
 })
+
+
 
 // =================== REDUCER STARTS FROM HERE ====================
 // A function that accepts an initial state, an object of reducer functions, and a "slice name", (in this case the name is app.
@@ -82,6 +95,7 @@ export const appSlice = createSlice({
   name: 'app',
   initialState,
   reducers: {
+    
     // this is the action being dispactched on line 48 of AddApplications.jsx. The payload is the body
     appendApplication: (state, action) => {
       // as Moonhee said, you can directly update state with redux toolkit and you don't have to worry about screating deep copies and all that nonesense.
@@ -110,6 +124,11 @@ export const appSlice = createSlice({
     [fetchApplication.fulfilled]:(state, action) => {
       console.log("from fetchApplication.fulfilled ", action.payload)
       state.applications = action.payload;
+    },
+
+    [fetchUserId.fulfilled]: (state, action) => {
+      //console.log("fetchUserId.fulfilled: ", typeof(action.payload))
+      state.user = action.payload;
     }
   }
 })

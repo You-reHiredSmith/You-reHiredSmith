@@ -1,5 +1,5 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import './AddApplication.css'
 import { appendApplication, postApplication } from '../../reducers/appReducers'
@@ -11,6 +11,7 @@ export default function AddApplication ({
   // this is basically mapDispatchToProps
   // useDispatch will allow the dispatching of actions withough connecting the component with connect method. https://www.reactjstutorials.com/react-redux/18/redux-use-dispatch
   const dispatch = useDispatch()
+  const userId = useSelector((state) => state.app.user);
 
   //async 
   function addApplication () {
@@ -25,7 +26,7 @@ export default function AddApplication ({
     body.notes = ''
     body.priority = ''
     // they've hard coded the user id to just be one.
-    body.userId = 4
+    body.userId = userId
     console.log(body)
     // this is what the body that will be sent in the fetch now looks like:  
 

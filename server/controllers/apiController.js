@@ -16,9 +16,6 @@ module.exports = {
   //   }
   // }
 
-  // users table:
-  // user_id, firstname, lastname, age, spider_passwords
-  // 'INSERT INTO users (username, spiders_passwords) VALUES ($1, $2)', [username, hashedPassword]
   // need to getUser function from login, bcrypt compare
   getUser: async (req, res, next) => {
     try {

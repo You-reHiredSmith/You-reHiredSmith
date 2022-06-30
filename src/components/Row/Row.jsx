@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import './Row.css'
 import Notes from '../Notes/Notes.jsx'
-import { deleteApplicationActionCreator } from '../../actions/actions.js'
+import { removeApplication, delApplication } from '../../reducers/appReducers.js'
+//import { deleteApplicationActionCreator } from '../../actions/actions.js'
 
 // destructuring all the props 
 export default function Row ({
@@ -16,7 +17,9 @@ export default function Row ({
   const [notesOpen, setNotesOpen] = useState(false)
   const dispatch = useDispatch()
 
-  async function deleteApplication () {
+  //async 
+  function deleteApplication () {
+    /*
     try {
       await fetch(`/api/applications/${id}`, {
         method: 'DELETE',
@@ -25,13 +28,15 @@ export default function Row ({
         }
       })
       // updating the state after the succesful fetch
-      dispatch(deleteApplicationActionCreator(id))
     } catch (err) {
       console.log(err)
     }
-  }
+    */  
 
-
+    dispatch(delApplication(id)) // remove from the DB
+    dispatch(removeApplication(id)) // remove from the list
+  } // end of deleteApplication
+  
   const setColor = (input) => {
     const compStatus = input.toLowerCase();
     if (compStatus === "submitted") return 'submitted';

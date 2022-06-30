@@ -1,19 +1,26 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
 // getting the applications from the database
+// replaced by fetchApplication
 async function getApplications () {
-  const json = await fetch('/api/users/applications/1')
+  const json = await fetch('/api/users/applications/4')
   const data = await json.json()
   return data
 }
 
+// fetch request should be happening here! not int the AddApplication.jsx!
+
 // looks like they were setting the stage to have multiple users..
 // if you follow this all the way to the apiController getUserId they've hard coded the user id of 1 right now
+
+
+/* // getting user id
 async function getUser () {
   const json = await fetch('/api/users/4')
   const data = await json.json()
   return data
 }
+*/
 
 // the initial state is dependent upon a succesful fetch request here,
 // which isn't very optimal because if the request fails then nothing will render on the screen.
@@ -21,12 +28,52 @@ async function getUser () {
 // then the ui will display no matter what
 // and if there's an issue with a request when submitting inputs that can be handled then by telling the user to re try
 const initialState = {
-  user: await getUser(),
-  applications: await getApplications()
-  // user: 1,
-  // applications: []
+  //user: await getUser(),
+  user: 4,
+  //applications: await getApplications()
+  applications: []
 }
 
+// ===================  ASYNC REQUEST TO SERVER : GET ====================
+export const fetchApplication = createAsyncThunk('app/fetchApplication', async () => {
+  try {
+    const json = await fetch('/api/users/applications/4')
+    const data = await json.json()
+    return data;
+  } catch (error) {
+    console.log(error)
+  }
+})
+
+// ===================  ASYNC REQUEST TO SERVER : POST ====================
+export const postApplication = createAsyncThunk('app/postApplication', async (body, {rejectWithValue}) => {
+  try {
+    await fetch('/api/applications', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: (JSON.stringify(body))
+    })
+    //console.log("from postApplication fetch",body)
+    // nothing coming back though!!!!... better to have returning data
+  } catch (err) {
+    console.log(err)
+  }
+})
+// ===================  ASYNC REQUEST TO SERVER : DELETE ====================
+export const delApplication = createAsyncThunk('app/delApplication', async (id, {rejectWithValue}) => {
+  try {
+    await fetch(`/api/applications/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+  } catch (err) {
+    console.log(err)
+  }
+})
+
+// =================== REDUCER STARTS FROM HERE ====================
 // A function that accepts an initial state, an object of reducer functions, and a "slice name", (in this case the name is app.
 // refer to Homepage.jsx, line 14 to see it)
 // and automatically generates action creators and action types that correspond to the reducers and state.
@@ -36,7 +83,7 @@ export const appSlice = createSlice({
   initialState,
   reducers: {
     // this is the action being dispactched on line 48 of AddApplications.jsx. The payload is the body
-    ADD_APPLICATION: (state, action) => {
+    appendApplication: (state, action) => {
       // as Moonhee said, you can directly update state with redux toolkit and you don't have to worry about screating deep copies and all that nonesense.
       // this next bit is from the docs.. keep in mind that createSlice, which is the function we're in right now, uses createReducer internaly.
 
@@ -46,7 +93,7 @@ export const appSlice = createSlice({
       // https://redux-toolkit.js.org/usage/usage-guide/   go to writing reducers
       state.applications.push(action.payload)
     },
-    DELETE_APPLICATION: (state, action) => {
+    removeApplication: (state, action) => {
       // app is being located by id using the payload from line 28 of row.jsx.
       // then it's being removed using splice
       for (let i = 0; i < state.applications.length; i++) {
@@ -56,13 +103,18 @@ export const appSlice = createSlice({
       }
     }
   },
+  // ========= ExtraRecuer FOR RECEIVING PAYLOAD FROM ASYNC CALL ==============
   // it looks like maybe they were setting up to build an initial state with some default values here maybe.. Not exactly sure
-  extraReducers: (builder) => {
-    builder.addDefaultCase((state, action) => state)
+  extraReducers: {
+    //builder.addDefaultCase((state, action) => state)
+    [fetchApplication.fulfilled]:(state, action) => {
+      console.log("from fetchApplication.fulfilled ", action.payload)
+      state.applications = action.payload;
+    }
   }
 })
 
 // deconstructing and exporting each reducer. These are then imported into actions.js and exported from there to be used in the components.
-export const { ADD_APPLICATION, DELETE_APPLICATION } = appSlice.actions
+export const { appendApplication, removeApplication } = appSlice.actions
 
 export default appSlice.reducer

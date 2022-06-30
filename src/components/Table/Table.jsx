@@ -1,12 +1,27 @@
 import React from 'react'
+import { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { fetchApplication } from '../../reducers/appReducers.js'
 import Row from '../Row/Row.jsx'
 import './Table.css'
 import AddApplication from '../AddApplication/AddApplication.jsx'
 
 
 // more props destructuring here, just receiving the applications prop
-export default function Table ({ applications }) {
+export default function Table () {
   // if there is data store in state due to user submission this will map that data into individual row components which are then displayed on line 29
+
+  //fetching from database call when this component first renders
+  const dispatch = useDispatch()
+  useEffect(()=>{
+    dispatch(fetchApplication())
+  }, [])
+
+  const applications = useSelector((state) => {
+    // refer here when investigating the appReducer function
+    return state.app.applications
+  })
+
   const output = applications.map((app, key) => {
     return (
           <Row id={app.application_id} companyname={app.companyname} status={app.status} createddate={app.createddate} notes={app.notes} posting={app.posting} key={key}/>

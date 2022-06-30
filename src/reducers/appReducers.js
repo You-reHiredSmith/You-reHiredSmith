@@ -11,11 +11,15 @@ async function getApplications () {
 
 // looks like they were setting the stage to have multiple users..
 // if you follow this all the way to the apiController getUserId they've hard coded the user id of 1 right now
+
+
+/* // this function not needed anymore
 async function getUser () {
   const json = await fetch('/api/users/4')
   const data = await json.json()
   return data
 }
+*/
 
 // the initial state is dependent upon a succesful fetch request here,
 // which isn't very optimal because if the request fails then nothing will render on the screen.
@@ -25,9 +29,20 @@ async function getUser () {
 const initialState = {
   //user: await getUser(),
   user: 4,
-  applications: await getApplications()
-    // applications: []
+  //applications: await getApplications()
+  applications: []
 }
+
+// ===================  ASYNC REQUEST TO SERVER : GET ====================
+export const fetchApplication = createAsyncThunk('app/fetchApplication', async () => {
+  try {
+    const json = await fetch('/api/users/applications/4')
+    const data = await json.json()
+    return data;
+  } catch (error) {
+    console.log(error)
+  }
+})
 
 // ===================  ASYNC REQUEST TO SERVER : POST ====================
 export const postApplication = createAsyncThunk('app/postApplication', async (body, {rejectWithValue}) => {
@@ -37,7 +52,7 @@ export const postApplication = createAsyncThunk('app/postApplication', async (bo
       headers: {'Content-Type': 'application/json'},
       body: (JSON.stringify(body))
     })
-    console.log("from postApplication fetch",body)
+    //console.log("from postApplication fetch",body)
     // nothing coming back though!!!!... better to have returning data
   } catch (err) {
     console.log(err)
@@ -57,7 +72,7 @@ export const delApplication = createAsyncThunk('app/delApplication', async (id, 
   }
 })
 
-
+// =================== REDUCER STARTS FROM HERE ====================
 // A function that accepts an initial state, an object of reducer functions, and a "slice name", (in this case the name is app.
 // refer to Homepage.jsx, line 14 to see it)
 // and automatically generates action creators and action types that correspond to the reducers and state.
@@ -87,9 +102,14 @@ export const appSlice = createSlice({
       }
     }
   },
+  // ========= ExtraRecuer FOR RECEIVING PAYLOAD FROM ASYNC CALL ==============
   // it looks like maybe they were setting up to build an initial state with some default values here maybe.. Not exactly sure
-  extraReducers: (builder) => {
-    builder.addDefaultCase((state, action) => state)
+  extraReducers: {
+    //builder.addDefaultCase((state, action) => state)
+    [fetchApplication.fulfilled]:(state, action) => {
+      console.log("from fetchApplication.fulfilled ", action.payload)
+      state.applications = action.payload;
+    }
   }
 })
 

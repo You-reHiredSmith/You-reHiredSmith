@@ -62,7 +62,6 @@ export default function LoginPage () {
         <input type="text" name="username" id='username' 
           value={username}
           onChange={(e)=>setUsername(e.target.value)} placeholder='username' />
-
         <input type="text" name="password" id='password' 
           value={password}
           onChange={(e)=>setPassword(e.target.value)} placeholder='password' />

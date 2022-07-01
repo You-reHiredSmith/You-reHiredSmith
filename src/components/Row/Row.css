@@ -1,0 +1,11 @@
+#submitted {
+    background-color: #c7d4c2;
+}
+
+#inProgress {
+    background-color: #dbccbb;
+}
+
+#incomplete {
+    background-color: #ddb9bb;
+}

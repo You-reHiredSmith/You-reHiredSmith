@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-
+import './Row.css'
 import Notes from '../Notes/Notes.jsx'
 import { removeApplication, delApplication } from '../../reducers/appReducers.js'
 //import { deleteApplicationActionCreator } from '../../actions/actions.js'
@@ -37,10 +37,16 @@ export default function Row ({
     dispatch(removeApplication(id)) // remove from the list
   } // end of deleteApplication
   
-  
+  const setColor = (input) => {
+    const compStatus = input.toLowerCase();
+    if (compStatus === "submitted") return 'submitted';
+    if (compStatus === "in progress") return 'inProgress';
+    if (compStatus === "incomplete") return 'incomplete';
+  }
+
   return (
             <>
-             <tr>
+            <tr id={setColor(status)}>
               <td>{createddate}</td>
               <td>{companyname}</td>
               <td onClick={() => setNotesOpen(!notesOpen)}>{status}</td>
@@ -49,8 +55,7 @@ export default function Row ({
               <td><button onClick={deleteApplication}>Delete</button></td>
             </tr>
             <tr>
-              {/* conditionally rendering the notes based on state from line 16 and 39..*/}
-              {notesOpen ? <Notes notes={notes}/> : null}
+            {notesOpen ? <Notes notes={notes}/> : null}
             </tr>
             </>
   )

@@ -30,7 +30,7 @@ export default function Table () {
 
   const output = applications.map((app, key) => {
     return (
-          <Row id={app.application_id} companyname={app.companyname} status={app.status} createddate={app.createddate} notes={app.notes} posting={app.posting} key={key}/>
+          <Row id={app.application_id} companyname={app.companyname} status={app.status} createddate={app.createddate} notes={app.contact} posting={app.posting} key={key}/>
     )
   })
   return (

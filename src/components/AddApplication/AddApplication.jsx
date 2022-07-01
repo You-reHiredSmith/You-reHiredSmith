@@ -58,11 +58,30 @@ export default function AddApplication ({
   } //end of addApplication function 
 
   // creating all the input fields using the array of strings that were passed as props so each input has an appropriate id for the above fetch request body
-  const inputs = columns.map((column, i) => <td key={`input${i}`}><input type="text" id={column} className="form" /></td>)
+
+// 0: "createddate"
+// 1: "companyname"
+// 2: "status"
+// 3: "contact"
+// 4: "posting"
+  
+  console.log("COLUMNS:", columns);
+  // const inputs = columns.map((column, i) => <td key={`input${i}`}><input type="text" id={column} className="form" /></td>)
 
   return (
     <tr>
-      {inputs}
+      {/* {inputs} */}
+      <td key={Math.random()}><input type="text" id='createddate' className="form" /></td>
+      <td key={Math.random()}><input type="text" id='companyname' className="form" /></td>
+      <td key={Math.random()}>
+        <select id='status' className="form">
+          <option value="submitted">Submitted</option>
+          <option value="in progress">In Progress</option>
+          <option value="incomplete">Incomplete</option>
+        </select>
+      </td>
+      <td key={Math.random()}><input type="text" id='contact' className="form" /></td>
+      <td key={Math.random()}><input type="text" id='posting' className="form" /></td>
       <td><button onClick={addApplication}>Add</button></td>
     </tr>
   )

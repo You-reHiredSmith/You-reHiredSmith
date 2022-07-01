@@ -9,18 +9,24 @@ import AddApplication from '../AddApplication/AddApplication.jsx'
 
 // more props destructuring here, just receiving the applications prop
 export default function Table () {
+  const dispatch = useDispatch()
   // if there is data store in state due to user submission this will map that data into individual row components which are then displayed on line 29
 
-  //fetching from database call when this component first renders
-  const dispatch = useDispatch()
+  const userId = useSelector((state) => { // get userid
+    return state.app.user;
+  })
+  console.log("userId from Table page: ", userId);
+
+ 
   useEffect(()=>{
-    dispatch(fetchApplication())
+    dispatch(fetchApplication(userId))
   }, [])
 
   const applications = useSelector((state) => {
     // refer here when investigating the appReducer function
     return state.app.applications
   })
+  
 
   const output = applications.map((app, key) => {
     return (
